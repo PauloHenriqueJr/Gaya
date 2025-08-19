@@ -10,27 +10,17 @@ const API = `${BACKEND_URL}/api`;
 const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
 
-// Context para UI/Theme
-const ThemeContext = createContext();
-const useTheme = () => useContext(ThemeContext);
-
-// Componentes de UI base
+// Componentes de UI modernos
 const Button = ({ children, variant = 'primary', size = 'md', onClick, className = '', ...props }) => {
-  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
   const variants = {
-    primary: 'bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500',
-    secondary: 'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500',
-    outline: 'border border-gray-300 bg-transparent hover:bg-gray-50 focus:ring-gray-500'
-  };
-  const sizes = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-sm',
-    lg: 'px-6 py-3 text-base'
+    primary: 'btn-gaia-primary',
+    secondary: 'btn-gaia-secondary',
+    outline: 'border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-xl font-semibold transition-all duration-300'
   };
   
   return (
     <button 
-      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`${variants[variant]} ${className} transition-all duration-300 transform hover:scale-105`}
       onClick={onClick}
       {...props}
     >
@@ -40,47 +30,49 @@ const Button = ({ children, variant = 'primary', size = 'md', onClick, className
 };
 
 const Card = ({ children, className = '' }) => (
-  <div className={`bg-white rounded-lg shadow-sm border border-gray-200 p-6 ${className}`}>
+  <div className={`glass-card rounded-2xl ${className}`}>
     {children}
   </div>
 );
 
-const Input = ({ label, error, ...props }) => (
-  <div className="space-y-1">
-    {label && <label className="block text-sm font-medium text-gray-700">{label}</label>}
+const Input = ({ label, error, className = '', ...props }) => (
+  <div className="space-y-2">
+    {label && <label className="block text-sm font-semibold text-gray-700">{label}</label>}
     <input 
-      className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 ${error ? 'border-red-300' : 'border-gray-300'}`}
+      className={`input-premium w-full ${error ? 'border-red-400' : ''} ${className}`}
       {...props}
     />
-    {error && <p className="text-sm text-red-600">{error}</p>}
+    {error && <p className="text-sm text-red-600 font-medium">{error}</p>}
   </div>
 );
 
-const Select = ({ label, children, error, ...props }) => (
-  <div className="space-y-1">
-    {label && <label className="block text-sm font-medium text-gray-700">{label}</label>}
+const Select = ({ label, children, error, className = '', ...props }) => (
+  <div className="space-y-2">
+    {label && <label className="block text-sm font-semibold text-gray-700">{label}</label>}
     <select 
-      className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 ${error ? 'border-red-300' : 'border-gray-300'}`}
+      className={`input-premium w-full ${error ? 'border-red-400' : ''} ${className}`}
       {...props}
     >
       {children}
     </select>
-    {error && <p className="text-sm text-red-600">{error}</p>}
+    {error && <p className="text-sm text-red-600 font-medium">{error}</p>}
   </div>
 );
 
-// Ícones simples usando CSS
-const ChevronRightIcon = () => <span className="text-gray-400">›</span>;
-const HomeIcon = () => <span className="w-5 h-5">🏠</span>;
-const FileTextIcon = () => <span className="w-5 h-5">📄</span>;
-const FolderIcon = () => <span className="w-5 h-5">📁</span>;
-const CheckIcon = () => <span className="w-5 h-5">✓</span>;
-const BarChartIcon = () => <span className="w-5 h-5">📊</span>;
-const DropletIcon = () => <span className="w-5 h-5">💧</span>;
-const TrashIcon = () => <span className="w-5 h-5">🗑️</span>;
-const SearchIcon = () => <span className="w-5 h-5">🔍</span>;
+// Ícones melhorados com emoji
+const HomeIcon = () => <span className="text-2xl">🏠</span>;
+const FileTextIcon = () => <span className="text-2xl">📋</span>;
+const FolderIcon = () => <span className="text-2xl">🌿</span>;
+const CheckIcon = () => <span className="text-2xl">✅</span>;
+const BarChartIcon = () => <span className="text-2xl">📊</span>;
+const DropletIcon = () => <span className="text-2xl">💧</span>;
+const TrashIcon = () => <span className="text-2xl">♻️</span>;
+const SearchIcon = () => <span className="text-xl">🔍</span>;
+const StarIcon = () => <span className="text-xl">⭐</span>;
+const ShieldIcon = () => <span className="text-xl">🛡️</span>;
+const LeafIcon = () => <span className="text-xl">🍃</span>;
 
-// Layout principal
+// Layout moderno
 const DashboardLayout = ({ children }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -98,18 +90,33 @@ const DashboardLayout = ({ children }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-emerald-600">GaiaSystem</h1>
-              <span className="ml-2 text-sm text-gray-500">v2.2</span>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Header Premium */}
+      <header className="header-premium sticky top-0 z-50">
+        <div className="mx-auto px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-700">Olá, {user?.name}</span>
-              <Button variant="outline" size="sm" onClick={logout}>
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-xl flex items-center justify-center">
+                <LeafIcon />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                  GaiaSystem
+                </h1>
+                <span className="text-xs text-gray-500 font-medium">Gestão Ambiental v2.2</span>
+              </div>
+            </div>
+            <div className="flex items-center space-x-6">
+              <div className="hidden md:flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-emerald-400 to-blue-500 rounded-full flex items-center justify-center text-white font-semibold">
+                  {user?.name?.charAt(0)}
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-gray-900">Olá, {user?.name}</div>
+                  <div className="text-xs text-gray-500">Administrador</div>
+                </div>
+              </div>
+              <Button variant="outline" size="sm" onClick={logout} className="hidden md:block">
                 Sair
               </Button>
             </div>
@@ -118,9 +125,14 @@ const DashboardLayout = ({ children }) => {
       </header>
 
       <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white shadow-sm min-h-screen">
-          <nav className="mt-8 px-4">
+        {/* Sidebar Premium */}
+        <aside className="w-72 nav-modern min-h-screen sticky top-20">
+          <nav className="mt-8">
+            <div className="px-6 mb-8">
+              <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">
+                Navegação Principal
+              </h3>
+            </div>
             <ul className="space-y-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
@@ -129,19 +141,39 @@ const DashboardLayout = ({ children }) => {
                   <li key={item.name}>
                     <Link
                       to={item.href}
-                      className={`flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                        isActive 
-                          ? 'bg-emerald-100 text-emerald-700' 
-                          : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      className={`nav-item-modern ${
+                        isActive ? 'nav-item-active' : 'nav-item-inactive'
                       }`}
                     >
                       <Icon />
-                      <span className="ml-3">{item.name}</span>
+                      <span className="ml-4 font-medium">{item.name}</span>
+                      {isActive && (
+                        <span className="ml-auto w-2 h-2 bg-emerald-500 rounded-full animate-pulse-soft"></span>
+                      )}
                     </Link>
                   </li>
                 );
               })}
             </ul>
+            
+            {/* Quick Stats na Sidebar */}
+            <div className="mx-4 mt-8 p-6 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-2xl border border-emerald-100">
+              <h4 className="font-semibold text-gray-900 mb-3">Status Rápido</h4>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600">Compliance</span>
+                  <span className="text-sm font-bold text-emerald-600">95%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600">Licenças Ativas</span>
+                  <span className="text-sm font-bold text-blue-600">12</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-gray-600">Vistorias</span>
+                  <span className="text-sm font-bold text-purple-600">8</span>
+                </div>
+              </div>
+            </div>
           </nav>
         </aside>
 
@@ -154,18 +186,26 @@ const DashboardLayout = ({ children }) => {
   );
 };
 
-// Páginas
+// Landing Page Premium
 const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-emerald-600">GaiaSystem</h1>
+    <div className="min-h-screen">
+      {/* Header Premium */}
+      <header className="header-premium relative z-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-xl flex items-center justify-center">
+                <LeafIcon />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                  GaiaSystem
+                </h1>
+                <span className="text-xs text-gray-500 font-medium">Gestão Ambiental Digital</span>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="outline" onClick={() => navigate('/login')}>
@@ -179,122 +219,285 @@ const LandingPage = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Gestão Ambiental Digital
-            <span className="block text-emerald-600">Inteligente e Sustentável</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Plataforma PWA completa para gestão de licenças ambientais, projetos sustentáveis, 
-            vistorias digitais e monitoramento em tempo real. Soberania de dados garantida.
-          </p>
-          <div className="flex justify-center space-x-4">
-            <Button size="lg" onClick={() => navigate('/login')}>
-              Começar Gratuitamente
-            </Button>
-            <Button variant="outline" size="lg">
-              Ver Demonstração
-            </Button>
+      {/* Hero Section Premium */}
+      <section className="hero-section flex items-center">
+        <div className="hero-content w-full">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+            <div className="text-center animate-fadeInUp">
+              <div className="mb-8">
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-700 border border-emerald-200">
+                  <StarIcon />
+                  <span className="ml-2">Plataforma Líder em Gestão Ambiental</span>
+                </span>
+              </div>
+              
+              <h1 className="hero-title mb-8 animate-fadeInUp">
+                Transforme sua
+                <br />
+                <span className="bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Gestão Ambiental
+                </span>
+              </h1>
+              
+              <p className="hero-subtitle mb-12 animate-fadeInUp">
+                Plataforma completa para licenciamento, monitoramento e compliance ambiental. 
+                Automatize processos, reduza riscos e garanta conformidade com a legislação brasileira.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row justify-center gap-6 mb-12 animate-fadeInUp">
+                <Button size="lg" onClick={() => navigate('/login')} className="text-lg px-8 py-4">
+                  🚀 Começar Gratuitamente
+                </Button>
+                <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                  📹 Ver Demonstração
+                </Button>
+              </div>
+              
+              <div className="flex justify-center items-center space-x-8 text-sm text-gray-600 animate-slideInRight">
+                <div className="flex items-center">
+                  <ShieldIcon />
+                  <span className="ml-2 font-medium">Segurança Total</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckIcon />
+                  <span className="ml-2 font-medium">Compliance Garantido</span>
+                </div>
+                <div className="flex items-center">
+                  <LeafIcon />
+                  <span className="ml-2 font-medium">Sustentabilidade</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Stats Section Premium */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-50 via-white to-blue-50 opacity-50"></div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Resultados que Impressionam
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Mais de 1.200 organizações confiam no GaiaSystem para sua gestão ambiental
+            </p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-600">18,500+</div>
-              <div className="text-gray-600">Licenças Processadas</div>
+            <div className="stat-card animate-fadeInUp">
+              <div className="stat-number">18,500+</div>
+              <div className="stat-label">Licenças Processadas</div>
+              <div className="mt-2 text-sm text-emerald-600 font-medium">↗ +24% este ano</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-600">1,200+</div>
-              <div className="text-gray-600">Organizações Ativas</div>
+            <div className="stat-card animate-fadeInUp" style={{animationDelay: '0.1s'}}>
+              <div className="stat-number">1,200+</div>
+              <div className="stat-label">Organizações Ativas</div>
+              <div className="mt-2 text-sm text-blue-600 font-medium">↗ +18% este ano</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-600">99.9%</div>
-              <div className="text-gray-600">Uptime Garantido</div>
+            <div className="stat-card animate-fadeInUp" style={{animationDelay: '0.2s'}}>
+              <div className="stat-number">99.9%</div>
+              <div className="stat-label">Uptime Garantido</div>
+              <div className="mt-2 text-sm text-purple-600 font-medium">🛡️ SLA Premium</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-emerald-600">24/7</div>
-              <div className="text-gray-600">Suporte Especializado</div>
+            <div className="stat-card animate-fadeInUp" style={{animationDelay: '0.3s'}}>
+              <div className="stat-number">24/7</div>
+              <div className="stat-label">Suporte Especializado</div>
+              <div className="mt-2 text-sm text-orange-600 font-medium">📞 Sempre disponível</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Soluções Completas para Gestão Ambiental
-          </h2>
+      {/* Features Section Premium */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Soluções Completas para Gestão Ambiental
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Tudo que você precisa para gerenciar licenças, projetos e compliance ambiental em uma única plataforma
+            </p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card>
-              <FileTextIcon />
-              <h3 className="text-lg font-semibold mb-2 mt-4">Licenças Ambientais</h3>
-              <p className="text-gray-600">Gestão completa de LP, LI, LO e AAF com controle de prazos e renovações automáticas.</p>
-            </Card>
-            <Card>
-              <CheckIcon />
-              <h3 className="text-lg font-semibold mb-2 mt-4">Vistorias Digitais</h3>
-              <p className="text-gray-600">Checklists inteligentes, evidências fotográficas e relatórios de conformidade em tempo real.</p>
-            </Card>
-            <Card>
-              <DropletIcon />
-              <h3 className="text-lg font-semibold mb-2 mt-4">Monitoramento Hídrico</h3>
-              <p className="text-gray-600">Controle de qualidade da água, análises laboratoriais e compliance com legislação.</p>
-            </Card>
+            <div className="feature-card animate-fadeInUp">
+              <div className="feature-icon">
+                <FileTextIcon />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Licenças Ambientais</h3>
+              <p className="text-gray-600 mb-6">
+                Gestão completa de LP, LI, LO e AAF com controle automático de prazos, 
+                renovações e integração com órgãos ambientais.
+              </p>
+              <ul className="text-sm text-gray-500 space-y-2">
+                <li>✅ Controle de vencimentos</li>
+                <li>✅ Integração CETESB/INEA</li>
+                <li>✅ Alertas automáticos</li>
+              </ul>
+            </div>
+            
+            <div className="feature-card animate-fadeInUp" style={{animationDelay: '0.1s'}}>
+              <div className="feature-icon">
+                <CheckIcon />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Vistorias Digitais</h3>
+              <p className="text-gray-600 mb-6">
+                Checklists inteligentes, evidências fotograficas geo-referenciadas e 
+                relatórios de conformidade em tempo real.
+              </p>
+              <ul className="text-sm text-gray-500 space-y-2">
+                <li>✅ Checklists personalizáveis</li>
+                <li>✅ Fotos geo-localizadas</li>
+                <li>✅ Relatórios automáticos</li>
+              </ul>
+            </div>
+            
+            <div className="feature-card animate-fadeInUp" style={{animationDelay: '0.2s'}}>
+              <div className="feature-icon">
+                <DropletIcon />
+              </div>
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Monitoramento Hídrico</h3>
+              <p className="text-gray-600 mb-6">
+                Controle completo da qualidade da água, análises laboratoriais e 
+                compliance com legislação hídrica brasileira.
+              </p>
+              <ul className="text-sm text-gray-500 space-y-2">
+                <li>✅ Análises laboratoriais</li>
+                <li>✅ Conformidade ANA</li>
+                <li>✅ Dashboards em tempo real</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* CTA Section Premium */}
+      <section className="py-20 bg-gradient-to-r from-emerald-600 to-blue-600 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="relative max-w-4xl mx-auto text-center px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Pronto para Revolucionar sua Gestão Ambiental?
+          </h2>
+          <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">
+            Junte-se a mais de 1.200 organizações que já transformaram seus processos ambientais
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <Button 
+              onClick={() => navigate('/login')} 
+              className="bg-white text-emerald-600 hover:bg-gray-100 text-lg px-8 py-4 shadow-xl"
+            >
+              🚀 Começar Gratuitamente
+            </Button>
+            <Button 
+              variant="outline" 
+              className="border-white text-white hover:bg-white hover:text-emerald-600 text-lg px-8 py-4"
+            >
+              📞 Falar com Especialista
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-xl flex items-center justify-center">
+              <LeafIcon />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold">GaiaSystem</h3>
+              <p className="text-gray-400 text-sm">Gestão Ambiental Digital</p>
+            </div>
+          </div>
+          <p className="text-gray-400 mb-4">
+            © 2024 GaiaSystem - Plataforma de Gestão Ambiental Digital
+          </p>
+          <p className="text-sm text-gray-500">
+            Versão 2.2 - Última atualização: Janeiro 2025
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
 
+// Login Page Premium
 const LoginPage = () => {
   const { login } = useAuth();
   const [credentials, setCredentials] = useState({ email: 'admin@gaia.com.br', password: '123456' });
+  const [loading, setLoading] = useState(false);
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Simular loading
     login(credentials);
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <Card className="w-full max-w-md">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-emerald-600 mb-2">GaiaSystem</h1>
-          <p className="text-gray-600">Entre na sua conta</p>
-        </div>
-        
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            label="Email"
-            type="email"
-            value={credentials.email}
-            onChange={(e) => setCredentials({...credentials, email: e.target.value})}
-            required
-          />
-          <Input
-            label="Senha"
-            type="password"
-            value={credentials.password}
-            onChange={(e) => setCredentials({...credentials, password: e.target.value})}
-            required
-          />
-          <Button type="submit" className="w-full">
-            Entrar
-          </Button>
-        </form>
-      </Card>
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-blue-50 to-purple-50 flex items-center justify-center p-6">
+      <div className="w-full max-w-md">
+        <Card className="p-8">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <LeafIcon />
+            </div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-2">
+              GaiaSystem
+            </h1>
+            <p className="text-gray-600 font-medium">Entre na sua conta</p>
+          </div>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <Input
+              label="Email"
+              type="email"
+              value={credentials.email}
+              onChange={(e) => setCredentials({...credentials, email: e.target.value})}
+              required
+              className="text-lg"
+            />
+            <Input
+              label="Senha"
+              type="password"
+              value={credentials.password}
+              onChange={(e) => setCredentials({...credentials, password: e.target.value})}
+              required
+              className="text-lg"
+            />
+            <Button 
+              type="submit" 
+              className="w-full text-lg py-4" 
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="loading-spinner-premium mr-3"></div>
+                  Entrando...
+                </div>
+              ) : (
+                '🚀 Entrar no Sistema'
+              )}
+            </Button>
+          </form>
+          
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-500">
+              Dados demo: admin@gaia.com.br / 123456
+            </p>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };
 
+// Dashboard Premium
 const Dashboard = () => {
   const { currentTenant } = useAuth();
   const [stats, setStats] = useState(null);
@@ -316,112 +519,229 @@ const Dashboard = () => {
   };
 
   if (loading) {
-    return <div className="flex justify-center py-8">Carregando...</div>;
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="loading-premium">
+          <div className="loading-spinner-premium"></div>
+          Carregando dashboard...
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <Button>Nova Licença</Button>
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex justify-between items-start">
+        <div className="animate-fadeInUp">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Dashboard</h1>
+          <p className="text-lg text-gray-600">Visão geral da sua gestão ambiental</p>
+        </div>
+        <div className="animate-slideInRight">
+          <Button className="shadow-lg">
+            ✨ Nova Licença
+          </Button>
+        </div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Stats Cards Premium */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="text-center">
-          <div className="text-2xl font-bold text-blue-600">{stats?.licenses_total || 0}</div>
-          <div className="text-gray-600">Total de Licenças</div>
-          <div className="text-sm text-emerald-600 mt-1">{stats?.licenses_active || 0} Ativas</div>
-        </Card>
+        <div className="stat-card animate-fadeInUp">
+          <div className="flex items-center justify-between mb-4">
+            <FileTextIcon />
+            <span className="text-sm font-medium text-gray-500">Total</span>
+          </div>
+          <div className="stat-number text-blue-600">{stats?.licenses_total || 0}</div>
+          <div className="stat-label">Licenças Ambientais</div>
+          <div className="mt-3 text-sm text-emerald-600 font-medium">
+            ✅ {stats?.licenses_active || 0} Ativas
+          </div>
+        </div>
         
-        <Card className="text-center">
-          <div className="text-2xl font-bold text-emerald-600">{stats?.projects_total || 0}</div>
-          <div className="text-gray-600">Projetos Ativos</div>
-        </Card>
+        <div className="stat-card animate-fadeInUp" style={{animationDelay: '0.1s'}}>
+          <div className="flex items-center justify-between mb-4">
+            <FolderIcon />
+            <span className="text-sm font-medium text-gray-500">Ativos</span>
+          </div>
+          <div className="stat-number text-emerald-600">{stats?.projects_total || 0}</div>
+          <div className="stat-label">Projetos Ambientais</div>
+          <div className="mt-3 text-sm text-blue-600 font-medium">
+            🚀 Em Andamento
+          </div>
+        </div>
         
-        <Card className="text-center">
-          <div className="text-2xl font-bold text-purple-600">{stats?.inspections_total || 0}</div>
-          <div className="text-gray-600">Vistorias</div>
-        </Card>
+        <div className="stat-card animate-fadeInUp" style={{animationDelay: '0.2s'}}>
+          <div className="flex items-center justify-between mb-4">
+            <CheckIcon />
+            <span className="text-sm font-medium text-gray-500">Este Mês</span>
+          </div>
+          <div className="stat-number text-purple-600">{stats?.inspections_total || 0}</div>
+          <div className="stat-label">Vistorias Realizadas</div>
+          <div className="mt-3 text-sm text-purple-600 font-medium">
+            📋 Compliance OK
+          </div>
+        </div>
         
-        <Card className="text-center">
-          <div className="text-2xl font-bold text-orange-600">{stats?.compliance_score || 0}%</div>
-          <div className="text-gray-600">Score de Compliance</div>
-        </Card>
+        <div className="stat-card animate-fadeInUp" style={{animationDelay: '0.3s'}}>
+          <div className="flex items-center justify-between mb-4">
+            <ShieldIcon />
+            <span className="text-sm font-medium text-gray-500">Score</span>
+          </div>
+          <div className="stat-number text-orange-600">{stats?.compliance_score || 0}%</div>
+          <div className="stat-label">Compliance Ambiental</div>
+          <div className="mt-3 text-sm text-emerald-600 font-medium">
+            📈 Excelente
+          </div>
+        </div>
       </div>
 
-      {/* ESG Score */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <h3 className="text-lg font-semibold mb-4">Score ESG</h3>
-          <div className="flex items-center justify-between mb-2">
-            <span>Ambiental (E)</span>
-            <span className="font-semibold">95%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-            <div className="bg-emerald-600 h-2 rounded-full" style={{width: '95%'}}></div>
-          </div>
-          
-          <div className="flex items-center justify-between mb-2">
-            <span>Social (S)</span>
-            <span className="font-semibold">88%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-            <div className="bg-blue-600 h-2 rounded-full" style={{width: '88%'}}></div>
-          </div>
-          
-          <div className="flex items-center justify-between mb-2">
-            <span>Governança (G)</span>
-            <span className="font-semibold">92%</span>
-          </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div className="bg-purple-600 h-2 rounded-full" style={{width: '92%'}}></div>
-          </div>
-        </Card>
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* ESG Score Card Premium */}
+        <div className="lg:col-span-2">
+          <Card className="esg-card animate-fadeInUp">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold text-gray-900">Score ESG</h3>
+              <div className="flex items-center space-x-2">
+                <span className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                  {stats?.esg_score || 92}%
+                </span>
+                <StarIcon />
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-emerald-500 rounded-full mr-3"></div>
+                    <span className="font-semibold text-gray-900">Ambiental (E)</span>
+                  </div>
+                  <span className="text-xl font-bold text-emerald-600">95%</span>
+                </div>
+                <div className="esg-bar bg-gray-200">
+                  <div className="esg-bar-environmental h-full rounded-full" style={{width: '95%'}}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                    <span className="font-semibold text-gray-900">Social (S)</span>
+                  </div>
+                  <span className="text-xl font-bold text-blue-600">88%</span>
+                </div>
+                <div className="esg-bar bg-gray-200">
+                  <div className="esg-bar-social h-full rounded-full" style={{width: '88%'}}></div>
+                </div>
+              </div>
+              
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center">
+                    <div className="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                    <span className="font-semibold text-gray-900">Governança (G)</span>
+                  </div>
+                  <span className="text-xl font-bold text-purple-600">92%</span>
+                </div>
+                <div className="esg-bar bg-gray-200">
+                  <div className="esg-bar-governance h-full rounded-full" style={{width: '92%'}}></div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
 
-        <Card>
-          <h3 className="text-lg font-semibold mb-4">Ações Rápidas</h3>
-          <div className="space-y-3">
-            <Button variant="outline" className="w-full justify-start">
-              <FileTextIcon />
-              <span className="ml-2">Nova Licença Ambiental</span>
-            </Button>
-            <Button variant="outline" className="w-full justify-start">
+        {/* Quick Actions Premium */}
+        <div>
+          <Card className="p-8 animate-slideInRight">
+            <h3 className="text-xl font-bold text-gray-900 mb-6">Ações Rápidas</h3>
+            <div className="space-y-4">
+              <Button variant="outline" className="w-full justify-start p-4 text-left">
+                <FileTextIcon />
+                <div className="ml-4">
+                  <div className="font-semibold">Nova Licença</div>
+                  <div className="text-sm text-gray-500">Cadastrar licença ambiental</div>
+                </div>
+              </Button>
+              
+              <Button variant="outline" className="w-full justify-start p-4 text-left">
+                <CheckIcon />
+                <div className="ml-4">
+                  <div className="font-semibold">Agendar Vistoria</div>
+                  <div className="text-sm text-gray-500">Nova inspeção de campo</div>
+                </div>
+              </Button>
+              
+              <Button variant="outline" className="w-full justify-start p-4 text-left">
+                <BarChartIcon />
+                <div className="ml-4">
+                  <div className="font-semibold">Gerar Relatório</div>
+                  <div className="text-sm text-gray-500">Análise detalhada</div>
+                </div>
+              </Button>
+              
+              <Button variant="outline" className="w-full justify-start p-4 text-left">
+                <DropletIcon />
+                <div className="ml-4">
+                  <div className="font-semibold">Monitoramento</div>
+                  <div className="text-sm text-gray-500">Qualidade da água</div>
+                </div>
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      {/* Recent Activity Premium */}
+      <Card className="p-8 animate-fadeInUp">
+        <h3 className="text-2xl font-bold text-gray-900 mb-6">Atividade Recente</h3>
+        <div className="space-y-6">
+          <div className="flex items-start space-x-4 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl">
+            <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
               <CheckIcon />
-              <span className="ml-2">Agendar Vistoria</span>
-            </Button>
-            <Button variant="outline" className="w-full justify-start">
-              <BarChartIcon />
-              <span className="ml-2">Gerar Relatório</span>
-            </Button>
-          </div>
-        </Card>
-      </div>
-
-      {/* Recent Activity */}
-      <Card>
-        <h3 className="text-lg font-semibold mb-4">Atividade Recente</h3>
-        <div className="space-y-4">
-          <div className="flex items-center justify-between py-3 border-b border-gray-100">
-            <div className="flex items-center">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
-              <div>
-                <div className="font-medium">Licença LP001/2024-SP aprovada</div>
-                <div className="text-sm text-gray-500">Indústria Brasileira S.A. - há 2 horas</div>
-              </div>
             </div>
-            <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded">Aprovada</span>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold text-gray-900">Licença LP001/2024-SP aprovada</h4>
+                <span className="badge-premium badge-active">Aprovada</span>
+              </div>
+              <p className="text-gray-600 mt-1">Indústria Brasileira S.A. - CETESB</p>
+              <p className="text-sm text-gray-500 mt-1">há 2 horas</p>
+            </div>
           </div>
           
-          <div className="flex items-center justify-between py-3 border-b border-gray-100">
-            <div className="flex items-center">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-              <div>
-                <div className="font-medium">Vistoria concluída com 87% de conformidade</div>
-                <div className="text-sm text-gray-500">Complexo Industrial - há 4 horas</div>
-              </div>
+          <div className="flex items-start space-x-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+            <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+              <CheckIcon />
             </div>
-            <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Concluída</span>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold text-gray-900">Vistoria concluída com 87% de conformidade</h4>
+                <span className="badge-premium" style={{background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%)', color: '#2563eb', border: '1px solid rgba(59, 130, 246, 0.3)'}}>
+                  Concluída
+                </span>
+              </div>
+              <p className="text-gray-600 mt-1">Complexo Industrial - São Bernardo do Campo, SP</p>
+              <p className="text-sm text-gray-500 mt-1">há 4 horas</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start space-x-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl">
+            <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+              <FolderIcon />
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center justify-between">
+                <h4 className="font-semibold text-gray-900">Projeto Mata Ciliar - Progresso 75%</h4>
+                <span className="badge-premium" style={{background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%)', color: '#7c3aed', border: '1px solid rgba(139, 92, 246, 0.3)'}}>
+                  Em Andamento
+                </span>
+              </div>
+              <p className="text-gray-600 mt-1">Recuperação de 50 hectares - Rio Tietê</p>
+              <p className="text-sm text-gray-500 mt-1">há 1 dia</p>
+            </div>
           </div>
         </div>
       </Card>
@@ -429,6 +749,7 @@ const Dashboard = () => {
   );
 };
 
+// Licenses Page Premium
 const LicensesPage = () => {
   const { currentTenant } = useAuth();
   const [licenses, setLicenses] = useState([]);
@@ -455,107 +776,144 @@ const LicensesPage = () => {
     }
   };
 
-  const getStatusColor = (status) => {
-    const colors = {
-      'Ativa': 'bg-emerald-100 text-emerald-700',
-      'Vencida': 'bg-red-100 text-red-700',
-      'Pendente': 'bg-yellow-100 text-yellow-700',
-      'Suspensa': 'bg-gray-100 text-gray-700'
+  const getStatusBadge = (status) => {
+    const statusConfig = {
+      'Ativa': { class: 'badge-active', icon: '✅' },
+      'Vencida': { class: 'badge-expired', icon: '❌' },
+      'Pendente': { class: 'badge-pending', icon: '⏳' },
+      'Suspensa': { class: 'badge-premium', icon: '⏸️' }
     };
-    return colors[status] || 'bg-gray-100 text-gray-700';
+    const config = statusConfig[status] || statusConfig['Pendente'];
+    return { class: `badge-premium ${config.class}`, icon: config.icon };
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Licenças Ambientais</h1>
-        <Button>Nova Licença</Button>
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex justify-between items-start">
+        <div className="animate-fadeInUp">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Licenças Ambientais</h1>
+          <p className="text-lg text-gray-600">Gestão completa do seu portfólio de licenças</p>
+        </div>
+        <div className="animate-slideInRight">
+          <Button className="shadow-lg">
+            ✨ Nova Licença
+          </Button>
+        </div>
       </div>
 
-      {/* Filtros */}
-      <Card>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Filtros Premium */}
+      <Card className="filter-section">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <Select
-            label="Status"
+            label="📋 Status da Licença"
             value={filters.status}
             onChange={(e) => setFilters({...filters, status: e.target.value})}
           >
             <option value="">Todos os Status</option>
-            <option value="Ativa">Ativa</option>
-            <option value="Vencida">Vencida</option>
-            <option value="Pendente">Pendente</option>
-            <option value="Suspensa">Suspensa</option>
+            <option value="Ativa">✅ Ativa</option>
+            <option value="Vencida">❌ Vencida</option>
+            <option value="Pendente">⏳ Pendente</option>
+            <option value="Suspensa">⏸️ Suspensa</option>
           </Select>
           
           <Select
-            label="Tipo"
+            label="📄 Tipo de Licença"
             value={filters.type}
             onChange={(e) => setFilters({...filters, type: e.target.value})}
           >
             <option value="">Todos os Tipos</option>
-            <option value="LP">LP - Licença Prévia</option>
-            <option value="LI">LI - Licença de Instalação</option>
-            <option value="LO">LO - Licença de Operação</option>
-            <option value="AAF">AAF - Autorização Ambiental</option>
+            <option value="LP">🟢 LP - Licença Prévia</option>
+            <option value="LI">🔵 LI - Licença de Instalação</option>
+            <option value="LO">🟡 LO - Licença de Operação</option>
+            <option value="AAF">🟣 AAF - Autorização Ambiental</option>
           </Select>
+          
+          <div className="space-y-2">
+            <label className="block text-sm font-semibold text-gray-700">🔍 Busca Rápida</label>
+            <Input placeholder="Buscar por empresa ou número..." />
+          </div>
           
           <div className="flex items-end">
             <Button variant="outline" className="w-full">
               <SearchIcon />
-              <span className="ml-2">Buscar</span>
+              <span className="ml-2">Filtrar</span>
             </Button>
           </div>
         </div>
       </Card>
 
-      {/* Tabela de Licenças */}
-      <Card>
+      {/* Tabela Premium */}
+      <Card className="table-premium">
         {loading ? (
-          <div className="text-center py-8">Carregando licenças...</div>
+          <div className="loading-premium p-12">
+            <div className="loading-spinner-premium"></div>
+            Carregando licenças...
+          </div>
         ) : licenses.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
-            Nenhuma licença encontrada. <Button variant="outline" size="sm">Criar primeira licença</Button>
+          <div className="text-center py-16">
+            <div className="text-6xl mb-4">📋</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">Nenhuma licença encontrada</h3>
+            <p className="text-gray-600 mb-6">Comece criando sua primeira licença ambiental</p>
+            <Button>✨ Criar Primeira Licença</Button>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 font-medium text-gray-900">Número</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-900">Tipo</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-900">Empresa</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-900">Status</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-900">Vencimento</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-900">Órgão</th>
+                <tr className="table-header-premium">
+                  <th className="text-left py-6 px-6 font-bold text-gray-900">📋 Licença</th>
+                  <th className="text-left py-6 px-6 font-bold text-gray-900">🏢 Empresa</th>
+                  <th className="text-left py-6 px-6 font-bold text-gray-900">📊 Status</th>
+                  <th className="text-left py-6 px-6 font-bold text-gray-900">📅 Vencimento</th>
+                  <th className="text-left py-6 px-6 font-bold text-gray-900">🏛️ Órgão</th>
+                  <th className="text-left py-6 px-6 font-bold text-gray-900">⚡ Ações</th>
                 </tr>
               </thead>
               <tbody>
-                {licenses.map((license) => (
-                  <tr key={license.id} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-3 px-4">
-                      <div className="font-medium text-emerald-600">{license.number}</div>
-                      <div className="text-sm text-gray-500">{license.title}</div>
-                    </td>
-                    <td className="py-3 px-4">
-                      <span className="text-sm font-medium">{license.type}</span>
-                    </td>
-                    <td className="py-3 px-4">
-                      <div className="font-medium">{license.company}</div>
-                      <div className="text-sm text-gray-500">{license.cnpj}</div>
-                    </td>
-                    <td className="py-3 px-4">
-                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(license.status)}`}>
-                        {license.status}
-                      </span>
-                    </td>
-                    <td className="py-3 px-4 text-sm">
-                      {license.expiry_date}
-                    </td>
-                    <td className="py-3 px-4 text-sm">
-                      {license.issuing_body}
-                    </td>
-                  </tr>
-                ))}
+                {licenses.map((license) => {
+                  const statusBadge = getStatusBadge(license.status);
+                  return (
+                    <tr key={license.id} className="table-row-premium">
+                      <td className="table-cell-premium">
+                        <div>
+                          <div className="font-bold text-emerald-600 text-lg">{license.number}</div>
+                          <div className="text-gray-600 font-medium">{license.title}</div>
+                          <div className="text-sm text-gray-500 mt-1">
+                            <span className="bg-gray-100 px-2 py-1 rounded-full text-xs font-medium">
+                              {license.type}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="table-cell-premium">
+                        <div>
+                          <div className="font-semibold text-gray-900">{license.company}</div>
+                          <div className="text-sm text-gray-500 font-mono">{license.cnpj}</div>
+                          <div className="text-xs text-gray-400">{license.activity_type}</div>
+                        </div>
+                      </td>
+                      <td className="table-cell-premium">
+                        <span className={statusBadge.class}>
+                          {statusBadge.icon} {license.status}
+                        </span>
+                      </td>
+                      <td className="table-cell-premium">
+                        <div className="font-medium text-gray-900">{license.expiry_date}</div>
+                        <div className="text-sm text-gray-500">Emissão: {license.issue_date}</div>
+                      </td>
+                      <td className="table-cell-premium">
+                        <div className="font-medium text-gray-900">{license.issuing_body}</div>
+                      </td>
+                      <td className="table-cell-premium">
+                        <div className="flex space-x-2">
+                          <Button variant="outline" size="sm">👁️ Ver</Button>
+                          <Button variant="outline" size="sm">✏️ Editar</Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
@@ -565,7 +923,7 @@ const LicensesPage = () => {
   );
 };
 
-// Página de Projetos
+// Outras páginas com design melhorado
 const ProjectsPage = () => {
   const { currentTenant } = useAuth();
   const [projects, setProjects] = useState([]);
@@ -587,45 +945,66 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Projetos Ambientais</h1>
-        <Button>Novo Projeto</Button>
+    <div className="space-y-8">
+      <div className="flex justify-between items-start">
+        <div className="animate-fadeInUp">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Projetos Ambientais</h1>
+          <p className="text-lg text-gray-600">Gestão de projetos sustentáveis e recuperação ambiental</p>
+        </div>
+        <Button className="shadow-lg animate-slideInRight">
+          🌱 Novo Projeto
+        </Button>
       </div>
 
-      <Card>
+      <Card className="p-8">
         {loading ? (
-          <div className="text-center py-8">Carregando projetos...</div>
+          <div className="loading-premium">
+            <div className="loading-spinner-premium"></div>
+            Carregando projetos...
+          </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             {projects.map((project) => (
-              <div key={project.id} className="border border-gray-200 rounded-lg p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900">{project.name}</h3>
-                  <span className={`px-3 py-1 text-sm rounded-full ${
-                    project.status === 'Em Andamento' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'
+              <div key={project.id} className="feature-card">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="feature-icon">
+                      <FolderIcon />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{project.name}</h3>
+                      <p className="text-gray-600 leading-relaxed">{project.description}</p>
+                    </div>
+                  </div>
+                  <span className={`badge-premium ${
+                    project.status === 'Em Andamento' ? 'badge-active' : 'badge-premium'
                   }`}>
-                    {project.status}
+                    {project.status === 'Em Andamento' ? '🚀' : '📋'} {project.status}
                   </span>
                 </div>
-                <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                  <div>
-                    <span className="text-gray-500">Orçamento:</span>
-                    <div className="font-medium">R$ {project.budget?.toLocaleString()}</div>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+                  <div className="text-center p-4 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-xl">
+                    <div className="text-2xl font-bold text-emerald-600">R$ {project.budget?.toLocaleString()}</div>
+                    <div className="text-sm text-gray-600 font-medium">Orçamento</div>
                   </div>
-                  <div>
-                    <span className="text-gray-500">Gerente:</span>
-                    <div className="font-medium">{project.manager}</div>
+                  <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
+                    <div className="text-lg font-bold text-blue-600">{project.manager}</div>
+                    <div className="text-sm text-gray-600 font-medium">Gerente</div>
                   </div>
-                  <div>
-                    <span className="text-gray-500">Local:</span>
-                    <div className="font-medium">{project.location}</div>
+                  <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl">
+                    <div className="text-lg font-bold text-purple-600">{project.location}</div>
+                    <div className="text-sm text-gray-600 font-medium">Localização</div>
                   </div>
-                  <div>
-                    <span className="text-gray-500">Início:</span>
-                    <div className="font-medium">{project.start_date}</div>
+                  <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl">
+                    <div className="text-lg font-bold text-orange-600">{project.start_date}</div>
+                    <div className="text-sm text-gray-600 font-medium">Início</div>
                   </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl">
+                  <div className="font-semibold text-gray-900 mb-2">🌍 Impacto Ambiental</div>
+                  <p className="text-gray-700">{project.environmental_impact}</p>
                 </div>
               </div>
             ))}
@@ -636,7 +1015,6 @@ const ProjectsPage = () => {
   );
 };
 
-// Página de Vistorias
 const InspectionsPage = () => {
   const { currentTenant } = useAuth();
   const [inspections, setInspections] = useState([]);
@@ -658,52 +1036,74 @@ const InspectionsPage = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Vistorias Ambientais</h1>
-        <Button>Nova Vistoria</Button>
+    <div className="space-y-8">
+      <div className="flex justify-between items-start">
+        <div className="animate-fadeInUp">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Vistorias Ambientais</h1>
+          <p className="text-lg text-gray-600">Inspeções digitais com checklists inteligentes</p>
+        </div>
+        <Button className="shadow-lg animate-slideInRight">
+          🔍 Nova Vistoria
+        </Button>
       </div>
 
-      <Card>
+      <Card className="p-8">
         {loading ? (
-          <div className="text-center py-8">Carregando vistorias...</div>
+          <div className="loading-premium">
+            <div className="loading-spinner-premium"></div>
+            Carregando vistorias...
+          </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             {inspections.map((inspection) => (
-              <div key={inspection.id} className="border border-gray-200 rounded-lg p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-semibold text-gray-900">{inspection.title}</h3>
-                  <span className={`px-3 py-1 text-sm rounded-full ${
-                    inspection.status === 'Concluída' ? 'bg-emerald-100 text-emerald-700' : 'bg-yellow-100 text-yellow-700'
+              <div key={inspection.id} className="feature-card">
+                <div className="flex justify-between items-start mb-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="feature-icon">
+                      <CheckIcon />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{inspection.title}</h3>
+                    </div>
+                  </div>
+                  <span className={`badge-premium ${
+                    inspection.status === 'Concluída' ? 'badge-active' : 'badge-pending'
                   }`}>
-                    {inspection.status}
+                    {inspection.status === 'Concluída' ? '✅' : '⏳'} {inspection.status}
                   </span>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                  <div>
-                    <span className="text-gray-500 text-sm">Local:</span>
-                    <div className="font-medium">{inspection.location}</div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                  <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
+                    <div className="text-lg font-bold text-blue-600">{inspection.location}</div>
+                    <div className="text-sm text-gray-600 font-medium">📍 Local da Vistoria</div>
                   </div>
-                  <div>
-                    <span className="text-gray-500 text-sm">Data:</span>
-                    <div className="font-medium">{inspection.scheduled_date}</div>
+                  <div className="text-center p-4 bg-gradient-to-br from-emerald-50 to-blue-50 rounded-xl">
+                    <div className="text-lg font-bold text-emerald-600">{inspection.scheduled_date}</div>
+                    <div className="text-sm text-gray-600 font-medium">📅 Data Agendada</div>
                   </div>
-                  <div>
-                    <span className="text-gray-500 text-sm">Inspetor:</span>
-                    <div className="font-medium">{inspection.inspector}</div>
+                  <div className="text-center p-4 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl">
+                    <div className="text-lg font-bold text-purple-600">{inspection.inspector}</div>
+                    <div className="text-sm text-gray-600 font-medium">👤 Inspetor</div>
                   </div>
                 </div>
+                
                 {inspection.conformity_percentage !== null && (
-                  <div className="mt-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm text-gray-600">Conformidade</span>
-                      <span className="font-semibold text-lg">{inspection.conformity_percentage}%</span>
+                  <div className="p-6 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl">
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-lg font-semibold text-gray-900">📊 Índice de Conformidade</span>
+                      <span className="text-3xl font-bold text-emerald-600">{inspection.conformity_percentage}%</span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div className="progress-bar-premium bg-gray-200">
                       <div 
-                        className={`h-3 rounded-full ${inspection.conformity_percentage >= 80 ? 'bg-emerald-500' : 'bg-yellow-500'}`}
+                        className={`h-full rounded-full transition-all duration-1000 ${
+                          inspection.conformity_percentage >= 80 ? 'bg-gradient-to-r from-emerald-500 to-green-500' : 'bg-gradient-to-r from-yellow-500 to-orange-500'
+                        }`}
                         style={{width: `${inspection.conformity_percentage}%`}}
                       ></div>
+                    </div>
+                    <div className="mt-3 text-sm text-gray-600">
+                      {inspection.conformity_percentage >= 80 ? '✅ Excelente conformidade' : '⚠️ Necessita atenção'}
                     </div>
                   </div>
                 )}
@@ -716,47 +1116,71 @@ const InspectionsPage = () => {
   );
 };
 
-// Outras páginas simplificadas
+// Outras páginas simplificadas com novo design
 const CommitmentsPage = () => (
-  <div className="space-y-6">
-    <h1 className="text-3xl font-bold text-gray-900">Compromissos Ambientais</h1>
-    <Card>
-      <div className="text-center py-8 text-gray-500">
-        Módulo de Compromissos em desenvolvimento
-      </div>
+  <div className="space-y-8">
+    <div className="animate-fadeInUp">
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">Compromissos Ambientais</h1>
+      <p className="text-lg text-gray-600">Gestão de obrigações e compromissos legais</p>
+    </div>
+    <Card className="p-16 text-center">
+      <div className="text-8xl mb-6">⚖️</div>
+      <h3 className="text-2xl font-bold text-gray-900 mb-4">Módulo em Desenvolvimento</h3>
+      <p className="text-gray-600 mb-6 max-w-md mx-auto">
+        Sistema avançado de gestão de compromissos ambientais em breve
+      </p>
+      <Button>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
 
 const WaterMonitoringPage = () => (
-  <div className="space-y-6">
-    <h1 className="text-3xl font-bold text-gray-900">Monitoramento Hídrico</h1>
-    <Card>
-      <div className="text-center py-8 text-gray-500">
-        Módulo de Monitoramento Hídrico em desenvolvimento
-      </div>
+  <div className="space-y-8">
+    <div className="animate-fadeInUp">
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">Monitoramento Hídrico</h1>
+      <p className="text-lg text-gray-600">Controle de qualidade da água e compliance hídrico</p>
+    </div>
+    <Card className="p-16 text-center">
+      <div className="text-8xl mb-6">💧</div>
+      <h3 className="text-2xl font-bold text-gray-900 mb-4">Módulo em Desenvolvimento</h3>
+      <p className="text-gray-600 mb-6 max-w-md mx-auto">
+        Sistema completo de monitoramento da qualidade da água em breve
+      </p>
+      <Button>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
 
 const WastePage = () => (
-  <div className="space-y-6">
-    <h1 className="text-3xl font-bold text-gray-900">Gestão de Resíduos</h1>
-    <Card>
-      <div className="text-center py-8 text-gray-500">
-        Módulo de Gestão de Resíduos em desenvolvimento
-      </div>
+  <div className="space-y-8">
+    <div className="animate-fadeInUp">
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">Gestão de Resíduos</h1>
+      <p className="text-lg text-gray-600">Controle completo do ciclo de vida dos resíduos</p>
+    </div>
+    <Card className="p-16 text-center">
+      <div className="text-8xl mb-6">♻️</div>
+      <h3 className="text-2xl font-bold text-gray-900 mb-4">Módulo em Desenvolvimento</h3>
+      <p className="text-gray-600 mb-6 max-w-md mx-auto">
+        Sistema avançado de gestão de resíduos e MTRs em breve
+      </p>
+      <Button>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
 
 const ReportsPage = () => (
-  <div className="space-y-6">
-    <h1 className="text-3xl font-bold text-gray-900">Relatórios</h1>
-    <Card>
-      <div className="text-center py-8 text-gray-500">
-        Módulo de Relatórios em desenvolvimento
-      </div>
+  <div className="space-y-8">
+    <div className="animate-fadeInUp">
+      <h1 className="text-4xl font-bold text-gray-900 mb-2">Relatórios e Análises</h1>
+      <p className="text-lg text-gray-600">Business Intelligence para gestão ambiental</p>
+    </div>
+    <Card className="p-16 text-center">
+      <div className="text-8xl mb-6">📈</div>
+      <h3 className="text-2xl font-bold text-gray-900 mb-4">Módulo em Desenvolvimento</h3>
+      <p className="text-gray-600 mb-6 max-w-md mx-auto">
+        Sistema avançado de relatórios e dashboards analíticos em breve
+      </p>
+      <Button>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
@@ -774,7 +1198,6 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Verificar se há usuário logado no localStorage
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
@@ -782,7 +1205,6 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (credentials) => {
-    // Simulação de login
     const mockUser = {
       id: '1',
       name: 'Administrador',
@@ -793,7 +1215,6 @@ const AuthProvider = ({ children }) => {
     setUser(mockUser);
     localStorage.setItem('user', JSON.stringify(mockUser));
     
-    // Criar dados de exemplo após login
     try {
       await axios.post(`${API}/seed-data?tenant_id=${currentTenant}`);
     } catch (error) {
