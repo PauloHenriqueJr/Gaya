@@ -25,6 +25,7 @@ import {
   DashboardStats,
   NavigationItem,
 } from './types';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 const BACKEND_URL = import.meta.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
