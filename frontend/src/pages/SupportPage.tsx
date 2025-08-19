@@ -14,7 +14,6 @@ import {
   Mail, 
   Clock, 
   CheckCircle,
-  AlertCircle,
   FileText,
   Video,
   Search,
