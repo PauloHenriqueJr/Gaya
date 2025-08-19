@@ -134,8 +134,15 @@
 - ✅ ESLint e Prettier configurados e funcionando
 - ✅ Todas as ferramentas base configuradas
 
-### 🔄 Em Andamento (FASE 1.2 - 0%)
-- Iniciando FASE 1.2: PWA Base
+### ✅ Concluído (FASE 1.2 - 100%)
+- ✅ PWA configurado com manifest.json completo
+- ✅ Service Worker básico implementado
+- ✅ Assets PWA configurados (ícones 72x72 até 512x512)
+- ✅ Build PWA configurado no Vite
+- ✅ Host bloqueado corrigido (allowedHosts)
+
+### 🔄 Em Andamento (FASE 2.1 - 0%)
+- Iniciando FASE 2.1: Componentes Base
 
 ### ⏳ Próximo (99%)
 - Configurar PWA (manifest, service worker, ícones)
