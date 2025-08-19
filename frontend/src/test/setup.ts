@@ -17,4 +17,4 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock environment variables
-process.env.REACT_APP_BACKEND_URL = 'https://ecomonitor-1.preview.emergentagent.com';
+process.env.REACT_APP_BACKEND_URL = 'https://ts-error-fix.preview.emergentagent.com';
