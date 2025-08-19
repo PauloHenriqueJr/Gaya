@@ -1165,7 +1165,7 @@ const InspectionsPage: React.FC = () => {
 };
 
 // Outras páginas simplificadas com novo design
-const CommitmentsPage = () => (
+const CommitmentsPage: React.FC = () => (
   <div className="space-y-8">
     <div className="animate-fadeInUp">
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Compromissos Ambientais</h1>
@@ -1177,12 +1177,12 @@ const CommitmentsPage = () => (
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
         Sistema avançado de gestão de compromissos ambientais em breve
       </p>
-      <Button>🚀 Notificar quando disponível</Button>
+      <Button onClick={() => {}}>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
 
-const WaterMonitoringPage = () => (
+const WaterMonitoringPage: React.FC = () => (
   <div className="space-y-8">
     <div className="animate-fadeInUp">
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Monitoramento Hídrico</h1>
@@ -1194,12 +1194,12 @@ const WaterMonitoringPage = () => (
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
         Sistema completo de monitoramento da qualidade da água em breve
       </p>
-      <Button>🚀 Notificar quando disponível</Button>
+      <Button onClick={() => {}}>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
 
-const WastePage = () => (
+const WastePage: React.FC = () => (
   <div className="space-y-8">
     <div className="animate-fadeInUp">
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Gestão de Resíduos</h1>
@@ -1211,12 +1211,12 @@ const WastePage = () => (
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
         Sistema avançado de gestão de resíduos e MTRs em breve
       </p>
-      <Button>🚀 Notificar quando disponível</Button>
+      <Button onClick={() => {}}>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
 
-const ReportsPage = () => (
+const ReportsPage: React.FC = () => (
   <div className="space-y-8">
     <div className="animate-fadeInUp">
       <h1 className="text-4xl font-bold text-gray-900 mb-2">Relatórios e Análises</h1>
@@ -1228,7 +1228,7 @@ const ReportsPage = () => (
       <p className="text-gray-600 mb-6 max-w-md mx-auto">
         Sistema avançado de relatórios e dashboards analíticos em breve
       </p>
-      <Button>🚀 Notificar quando disponível</Button>
+      <Button onClick={() => {}}>🚀 Notificar quando disponível</Button>
     </Card>
   </div>
 );
