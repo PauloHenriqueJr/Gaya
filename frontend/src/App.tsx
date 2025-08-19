@@ -1745,6 +1745,7 @@ function App() {
           </Routes>
         </AuthProvider>
         <PWAInstallPrompt />
+        <ServiceWorkerStatus />
       </BrowserRouter>
     </div>
   );
