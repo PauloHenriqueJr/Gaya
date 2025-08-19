@@ -27,10 +27,10 @@
 
 ## 🎨 FASE 2: INTERFACE AVANÇADA
 ### 2.1 Componentes Base
-- [ ] Migrar componentes para shadcn/ui
-- [ ] Implementar sistema de tema claro/escuro
-- [ ] Criar sistema de ícones (Lucide React)
-- [ ] Implementar Toasts/Notificações (Sonner)
+- [x] Migrar componentes para shadcn/ui
+- [x] Implementar sistema de tema claro/escuro
+- [x] Criar sistema de ícones (Lucide React)
+- [x] Implementar Toasts/Notificações (Sonner)
 
 ### 2.2 Navegação e UX
 - [ ] Implementar Command Palette (⌘K)
