@@ -1135,7 +1135,7 @@ const InspectionsPage: React.FC = () => {
                   </div>
                 </div>
                 
-                {inspection.conformity_percentage !== null && (
+                {inspection.conformity_percentage !== undefined && (
                   <div className="p-6 bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl">
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-lg font-semibold text-gray-900">📊 Índice de Conformidade</span>
