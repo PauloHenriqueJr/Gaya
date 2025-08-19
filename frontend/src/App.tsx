@@ -586,7 +586,7 @@ const Dashboard: React.FC = () => {
           <p className="text-lg text-gray-600">Visão geral da sua gestão ambiental</p>
         </div>
         <div className="animate-slideInRight">
-          <Button className="shadow-lg">
+          <Button className="shadow-lg" onClick={() => {}}>
             ✨ Nova Licença
           </Button>
         </div>
