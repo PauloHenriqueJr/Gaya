@@ -11,7 +11,9 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'icons/*.png', 'screenshots/*.png'],
-      manifest: false, // Use external manifest.json file
+      devOptions: {
+        enabled: false, // disable in development
+      },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
         runtimeCaching: [
@@ -23,9 +25,6 @@ export default defineConfig({
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 * 7 // 1 week
-              },
-              cacheKeyWillBeUsed: async ({ request }) => {
-                return `${request.url}`
               }
             }
           },
