@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv('/app/frontend/.env')
 
 # Get backend URL from environment
-BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://career-retome.preview.emergentagent.com')
+BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://retome-app.preview.emergentagent.com')
 BASE_URL = f"{BACKEND_URL}/api"
 TENANT_ID = "gaia_demo"
 
