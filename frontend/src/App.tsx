@@ -999,7 +999,7 @@ const ProjectsPage: React.FC = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Projetos Ambientais</h1>
           <p className="text-lg text-gray-600">Gestão de projetos sustentáveis e recuperação ambiental</p>
         </div>
-        <Button className="shadow-lg animate-slideInRight">
+        <Button className="shadow-lg animate-slideInRight" onClick={() => {}}>
           🌱 Novo Projeto
         </Button>
       </div>
