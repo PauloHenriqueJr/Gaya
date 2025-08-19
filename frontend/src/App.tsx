@@ -546,9 +546,9 @@ const LoginPage: React.FC = () => {
 };
 
 // Dashboard Premium
-const Dashboard = () => {
+const Dashboard: React.FC = () => {
   const { currentTenant } = useAuth();
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
