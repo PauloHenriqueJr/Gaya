@@ -138,6 +138,12 @@
   - Service Worker personalizado com cache estratégico
   - Suporte offline para páginas principais e API
   - Configuração Vite PWA habilitada para desenvolvimento
+- ✅ **Build do Projeto**: Corrigidos erros de build (Janeiro 2025)
+  - Removidos imports não utilizados (Phone, MapPin) do ProfilePage.tsx
+  - Configurado PWA plugin para usar diretório 'build' corretamente
+  - Build completo funcionando com PWA gerado com sucesso
+  - TypeScript compilando sem erros
+  - Todos os assets PWA sendo gerados corretamente
 
 ### 📋 Próximas Correções Planejadas
 - [ ] Otimizar bundle size (lazy loading de componentes)
