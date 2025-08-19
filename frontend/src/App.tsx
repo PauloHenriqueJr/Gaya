@@ -1260,8 +1260,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
-  const login = async (credentials) => {
-    const mockUser = {
+  const login = async (credentials: AuthCredentials): Promise<void> => {
+    const mockUser: User = {
       id: '1',
       name: 'Administrador',
       email: credentials.email,
