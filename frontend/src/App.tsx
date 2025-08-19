@@ -26,9 +26,36 @@ const useAuth = () => {
   return context;
 };
 
+// Component Props Types
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  onClick?: () => void;
+  className?: string;
+}
+
+interface CardProps {
+  children: ReactNode;
+  className?: string;
+}
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+  className?: string;
+}
+
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  label?: string;
+  children: ReactNode;
+  error?: string;
+  className?: string;
+}
+
 // Componentes de UI modernos
-const Button = ({ children, variant = 'primary', size = 'md', onClick, className = '', ...props }) => {
-  const variants = {
+const Button: React.FC<ButtonProps> = ({ children, variant = 'primary', size = 'md', onClick, className = '', ...props }) => {
+  const variants: Record<string, string> = {
     primary: 'btn-gaia-primary',
     secondary: 'btn-gaia-secondary',
     outline: 'border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-xl font-semibold transition-all duration-300'
@@ -45,13 +72,13 @@ const Button = ({ children, variant = 'primary', size = 'md', onClick, className
   );
 };
 
-const Card = ({ children, className = '' }) => (
+const Card: React.FC<CardProps> = ({ children, className = '' }) => (
   <div className={`glass-card rounded-2xl ${className}`}>
     {children}
   </div>
 );
 
-const Input = ({ label, error, className = '', ...props }) => (
+const Input: React.FC<InputProps> = ({ label, error, className = '', ...props }) => (
   <div className="space-y-2">
     {label && <label className="block text-sm font-semibold text-gray-700">{label}</label>}
     <input 
@@ -62,7 +89,7 @@ const Input = ({ label, error, className = '', ...props }) => (
   </div>
 );
 
-const Select = ({ label, children, error, className = '', ...props }) => (
+const Select: React.FC<SelectProps> = ({ label, children, error, className = '', ...props }) => (
   <div className="space-y-2">
     {label && <label className="block text-sm font-semibold text-gray-700">{label}</label>}
     <select 
