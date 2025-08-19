@@ -79,7 +79,6 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 const Button: React.FC<ButtonProps> = ({
   children,
   variant = 'primary',
-  size = 'md',
   onClick,
   className = '',
   ...props
