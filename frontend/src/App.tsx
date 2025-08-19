@@ -32,10 +32,10 @@ const API = `${BACKEND_URL}/api`;
 // Auth Context Types
 interface AuthContextType {
   user: User | null;
-  login: (credentials: AuthCredentials) => Promise<void>;
+  login: (_credentials: AuthCredentials) => Promise<void>;
   logout: () => void;
   currentTenant: string;
-  setCurrentTenant: (tenant: string) => void;
+  setCurrentTenant: (_tenant: string) => void;
 }
 
 // Context para autenticação e tenant
