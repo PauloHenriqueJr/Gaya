@@ -441,6 +441,7 @@ const LandingPage = () => {
             <Button 
               variant="outline" 
               className="border-white text-white hover:bg-white hover:text-emerald-600 text-lg px-8 py-4"
+              onClick={() => {}}
             >
               📞 Falar com Especialista
             </Button>
