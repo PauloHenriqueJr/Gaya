@@ -18,4 +18,4 @@ Object.defineProperty(window, 'matchMedia', {
 
 // Mock environment variables
 process.env.REACT_APP_BACKEND_URL =
-  'https://ts-error-fix.preview.emergentagent.com';
+  'https://retome-docs.preview.emergentagent.com';
