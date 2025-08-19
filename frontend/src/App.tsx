@@ -1743,6 +1743,7 @@ function App() {
             />
           </Routes>
         </AuthProvider>
+        <PWAInstallPrompt />
       </BrowserRouter>
     </div>
   );
