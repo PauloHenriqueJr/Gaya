@@ -16,4 +16,4 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock environment variables
-process.env.REACT_APP_BACKEND_URL = 'https://gaiamanage.preview.emergentagent.com';
+process.env.REACT_APP_BACKEND_URL = 'https://ecomonitor-1.preview.emergentagent.com';
