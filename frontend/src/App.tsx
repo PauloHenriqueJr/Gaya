@@ -972,9 +972,9 @@ const LicensesPage: React.FC = () => {
 };
 
 // Outras páginas com design melhorado
-const ProjectsPage = () => {
+const ProjectsPage: React.FC = () => {
   const { currentTenant } = useAuth();
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
