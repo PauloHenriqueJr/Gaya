@@ -1090,7 +1090,7 @@ const InspectionsPage: React.FC = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-2">Vistorias Ambientais</h1>
           <p className="text-lg text-gray-600">Inspeções digitais com checklists inteligentes</p>
         </div>
-        <Button className="shadow-lg animate-slideInRight">
+        <Button className="shadow-lg animate-slideInRight" onClick={() => {}}>
           🔍 Nova Vistoria
         </Button>
       </div>
