@@ -13,7 +13,7 @@
 - [x] Instalar e configurar shadcn/ui
 - [x] Configurar Zustand para estado global
 - [x] Configurar React Query para dados
-- [ ] Configurar ESLint + Prettier
+- [x] Configurar ESLint + Prettier
 - [x] Configurar Vitest + Testing Library
 
 ### 1.2 PWA Base
