@@ -1234,14 +1234,22 @@ const ReportsPage: React.FC = () => (
 );
 
 // Componente de rota protegida
-const ProtectedRoute = ({ children }) => {
+interface ProtectedRouteProps {
+  children: ReactNode;
+}
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
+  return user ? <>{children}</> : <Navigate to="/login" />;
 };
 
 // Provider de autenticação
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
   const [currentTenant, setCurrentTenant] = useState('demo-tenant');
   const navigate = useNavigate();
 
