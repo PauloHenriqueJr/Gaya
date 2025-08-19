@@ -706,7 +706,7 @@ const Dashboard: React.FC = () => {
           <Card className="p-8 animate-slideInRight">
             <h3 className="text-xl font-bold text-gray-900 mb-6">Ações Rápidas</h3>
             <div className="space-y-4">
-              <Button variant="outline" className="w-full justify-start p-4 text-left">
+              <Button variant="outline" className="w-full justify-start p-4 text-left" onClick={() => {}}>
                 <FileTextIcon />
                 <div className="ml-4">
                   <div className="font-semibold">Nova Licença</div>
@@ -714,7 +714,7 @@ const Dashboard: React.FC = () => {
                 </div>
               </Button>
               
-              <Button variant="outline" className="w-full justify-start p-4 text-left">
+              <Button variant="outline" className="w-full justify-start p-4 text-left" onClick={() => {}}>
                 <CheckIcon />
                 <div className="ml-4">
                   <div className="font-semibold">Agendar Vistoria</div>
@@ -722,7 +722,7 @@ const Dashboard: React.FC = () => {
                 </div>
               </Button>
               
-              <Button variant="outline" className="w-full justify-start p-4 text-left">
+              <Button variant="outline" className="w-full justify-start p-4 text-left" onClick={() => {}}>
                 <BarChartIcon />
                 <div className="ml-4">
                   <div className="font-semibold">Gerar Relatório</div>
@@ -730,7 +730,7 @@ const Dashboard: React.FC = () => {
                 </div>
               </Button>
               
-              <Button variant="outline" className="w-full justify-start p-4 text-left">
+              <Button variant="outline" className="w-full justify-start p-4 text-left" onClick={() => {}}>
                 <DropletIcon />
                 <div className="ml-4">
                   <div className="font-semibold">Monitoramento</div>
