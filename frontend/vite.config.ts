@@ -78,6 +78,7 @@ export default defineConfig({
         enabled: true, // Enable PWA in development
       },
       workbox: {
+        globDirectory: 'build',
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
         runtimeCaching: [
           {
