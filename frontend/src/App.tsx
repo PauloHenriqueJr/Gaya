@@ -844,7 +844,7 @@ const LicensesPage: React.FC = () => {
           <p className="text-lg text-gray-600">Gestão completa do seu portfólio de licenças</p>
         </div>
         <div className="animate-slideInRight">
-          <Button className="shadow-lg">
+          <Button className="shadow-lg" onClick={() => {}}>
             ✨ Nova Licença
           </Button>
         </div>
