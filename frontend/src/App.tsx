@@ -955,8 +955,8 @@ const LicensesPage: React.FC = () => {
                       </td>
                       <td className="table-cell-premium">
                         <div className="flex space-x-2">
-                          <Button variant="outline" size="sm">👁️ Ver</Button>
-                          <Button variant="outline" size="sm">✏️ Editar</Button>
+                          <Button variant="outline" size="sm" onClick={() => {}}>👁️ Ver</Button>
+                          <Button variant="outline" size="sm" onClick={() => {}}>✏️ Editar</Button>
                         </div>
                       </td>
                     </tr>
