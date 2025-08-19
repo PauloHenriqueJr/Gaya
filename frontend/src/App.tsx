@@ -7,9 +7,24 @@ import { User, AuthCredentials, License, Project, Inspection, DashboardStats, Na
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Auth Context Types
+interface AuthContextType {
+  user: User | null;
+  login: (credentials: AuthCredentials) => Promise<void>;
+  logout: () => void;
+  currentTenant: string;
+  setCurrentTenant: (tenant: string) => void;
+}
+
 // Context para autenticação e tenant
-const AuthContext = createContext();
-const useAuth = () => useContext(AuthContext);
+const AuthContext = createContext<AuthContextType | null>(null);
+const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within AuthProvider');
+  }
+  return context;
+};
 
 // Componentes de UI modernos
 const Button = ({ children, variant = 'primary', size = 'md', onClick, className = '', ...props }) => {
