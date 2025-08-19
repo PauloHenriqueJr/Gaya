@@ -1063,9 +1063,9 @@ const ProjectsPage: React.FC = () => {
   );
 };
 
-const InspectionsPage = () => {
+const InspectionsPage: React.FC = () => {
   const { currentTenant } = useAuth();
-  const [inspections, setInspections] = useState([]);
+  const [inspections, setInspections] = useState<Inspection[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
