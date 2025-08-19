@@ -140,10 +140,17 @@
   - Configuração Vite PWA habilitada para desenvolvimento
 - ✅ **Build do Projeto**: Corrigidos erros de build (Janeiro 2025)
   - Removidos imports não utilizados (Phone, MapPin) do ProfilePage.tsx
-  - Configurado PWA plugin para usar diretório 'build' corretamente
+  - Configurado PWA plugin para usar diretório 'dist' corretamente
   - Build completo funcionando com PWA gerado com sucesso
   - TypeScript compilando sem erros
   - Todos os assets PWA sendo gerados corretamente
+- ✅ **Configuração Vite**: Correções finais de build e configuração (Janeiro 2025)
+  - Corrigido erro "Could not resolve entry module index.html"
+  - Movido index.html para raiz do projeto com referência correta ao src/index.tsx
+  - Convertido postcss.config.js para ES modules (export default)
+  - PWA plugin configurado para usar 'dist' em vez de 'build'
+  - Build production funcionando 100% com Vite 7.1.3
+  - Preview da aplicação funcionando corretamente
 
 ### 📋 Próximas Correções Planejadas
 - [ ] Otimizar bundle size (lazy loading de componentes)
