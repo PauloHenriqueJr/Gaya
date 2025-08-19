@@ -144,9 +144,10 @@
 ### 🔄 Em Andamento (FASE 2.1 - 0%)
 - Iniciando FASE 2.1: Componentes Base
 
-### ⏳ Próximo (99%)
-- Configurar PWA (manifest, service worker, ícones)
-- Continuar para FASE 2: Interface Avançada
+### ⏳ Próximo (0%)
+- Migrar componentes para shadcn/ui  
+- Implementar sistema de tema claro/escuro
+- Continuar para FASE 2.2: Navegação e UX
 
 ---
 
