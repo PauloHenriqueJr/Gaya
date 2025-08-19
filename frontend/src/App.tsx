@@ -883,7 +883,7 @@ const LicensesPage: React.FC = () => {
           </div>
           
           <div className="flex items-end">
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" onClick={() => {}}>
               <SearchIcon />
               <span className="ml-2">Filtrar</span>
             </Button>
