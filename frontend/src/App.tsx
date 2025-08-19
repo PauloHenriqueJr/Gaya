@@ -903,7 +903,7 @@ const LicensesPage: React.FC = () => {
             <div className="text-6xl mb-4">📋</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">Nenhuma licença encontrada</h3>
             <p className="text-gray-600 mb-6">Comece criando sua primeira licença ambiental</p>
-            <Button>✨ Criar Primeira Licença</Button>
+            <Button onClick={() => {}}>✨ Criar Primeira Licença</Button>
           </div>
         ) : (
           <div className="overflow-x-auto">
