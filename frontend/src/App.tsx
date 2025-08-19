@@ -474,16 +474,16 @@ const LandingPage = () => {
 };
 
 // Login Page Premium
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const { login } = useAuth();
-  const [credentials, setCredentials] = useState({ email: 'admin@gaia.com.br', password: '123456' });
+  const [credentials, setCredentials] = useState<AuthCredentials>({ email: 'admin@gaia.com.br', password: '123456' });
   const [loading, setLoading] = useState(false);
   
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     await new Promise(resolve => setTimeout(resolve, 1000)); // Simular loading
-    login(credentials);
+    await login(credentials);
     setLoading(false);
   };
 
