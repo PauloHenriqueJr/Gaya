@@ -798,9 +798,9 @@ const Dashboard: React.FC = () => {
 };
 
 // Licenses Page Premium
-const LicensesPage = () => {
+const LicensesPage: React.FC = () => {
   const { currentTenant } = useAuth();
-  const [licenses, setLicenses] = useState([]);
+  const [licenses, setLicenses] = useState<License[]>([]);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({ status: '', type: '' });
 
