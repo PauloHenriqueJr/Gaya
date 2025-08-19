@@ -295,7 +295,7 @@ const LandingPage = () => {
                 <Button size="lg" onClick={() => navigate('/login')} className="text-lg px-8 py-4">
                   🚀 Começar Gratuitamente
                 </Button>
-                <Button variant="outline" size="lg" className="text-lg px-8 py-4">
+                <Button variant="outline" size="lg" className="text-lg px-8 py-4" onClick={() => {}}>
                   📹 Ver Demonstração
                 </Button>
               </div>
