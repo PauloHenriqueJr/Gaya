@@ -8,13 +8,13 @@
 
 ## 🎯 FASE 1: MODERNIZAÇÃO TÉCNICA
 ### 1.1 Estrutura Base e Configuração
-- [ ] Migrar para TypeScript (configuração + tipos base)
-- [ ] Configurar Vite (substituir Create React App)
-- [ ] Instalar e configurar shadcn/ui
-- [ ] Configurar Zustand para estado global
-- [ ] Configurar React Query para dados
+- [x] Migrar para TypeScript (configuração + tipos base)
+- [x] Configurar Vite (substituir Create React App)
+- [x] Instalar e configurar shadcn/ui
+- [x] Configurar Zustand para estado global
+- [x] Configurar React Query para dados
 - [ ] Configurar ESLint + Prettier
-- [ ] Configurar Vitest + Testing Library
+- [x] Configurar Vitest + Testing Library
 
 ### 1.2 PWA Base
 - [ ] Configurar manifest.json
