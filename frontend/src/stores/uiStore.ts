@@ -15,8 +15,8 @@ export const useUiStore = create<UiState>((set) => ({
   commandPaletteOpen: false,
 
   setSidebarOpen: (open: boolean) => set({ sidebarOpen: open }),
-  
+
   setTheme: (theme: 'light' | 'dark' | 'system') => set({ theme }),
-  
-  setCommandPaletteOpen: (open: boolean) => set({ commandPaletteOpen: open })
+
+  setCommandPaletteOpen: (open: boolean) => set({ commandPaletteOpen: open }),
 }));

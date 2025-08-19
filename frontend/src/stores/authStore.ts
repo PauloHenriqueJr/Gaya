@@ -20,15 +20,15 @@ export const useAuthStore = create<AuthState>()(
 
       login: async (credentials: AuthCredentials) => {
         set({ isLoading: true });
-        
+
         // Mock login - em produção seria uma chamada real à API
         const mockUser: User = {
           id: '1',
           name: 'Administrador',
           email: credentials.email,
-          role: 'admin'
+          role: 'admin',
         };
-        
+
         set({ user: mockUser, isLoading: false });
       },
 
@@ -38,14 +38,14 @@ export const useAuthStore = create<AuthState>()(
 
       setCurrentTenant: (tenant: string) => {
         set({ currentTenant: tenant });
-      }
+      },
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ 
-        user: state.user, 
-        currentTenant: state.currentTenant 
-      })
+      partialize: (state) => ({
+        user: state.user,
+        currentTenant: state.currentTenant,
+      }),
     }
   )
 );

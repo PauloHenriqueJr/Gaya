@@ -12,10 +12,10 @@ export const queryClient = new QueryClient({
           if (status >= 400 && status < 500) return false;
         }
         return failureCount < 3;
-      }
+      },
     },
     mutations: {
-      retry: false
-    }
-  }
+      retry: false,
+    },
+  },
 });
