@@ -17,7 +17,7 @@ load_dotenv('/app/frontend/.env')
 # Get backend URL from environment
 BACKEND_URL = os.getenv('REACT_APP_BACKEND_URL', 'https://retome-docs.preview.emergentagent.com')
 BASE_URL = f"{BACKEND_URL}/api"
-TENANT_ID = "demo-tenant"
+TENANT_ID = "gaia_demo"
 
 class Colors:
     GREEN = '\033[92m'
