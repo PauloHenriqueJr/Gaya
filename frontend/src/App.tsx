@@ -122,7 +122,6 @@ interface DashboardLayoutProps {
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const location = useLocation();
   
   const navigation: NavigationItem[] = [
