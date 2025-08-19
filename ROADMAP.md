@@ -17,10 +17,11 @@
 - [x] Configurar Vitest + Testing Library
 
 ### 1.2 PWA Base
-- [ ] Configurar manifest.json
-- [ ] Implementar service worker básico
-- [ ] Configurar assets PWA (ícones, splash screens)
-- [ ] Configurar build para PWA
+- [x] Configurar manifest.json
+- [x] Implementar service worker básico
+- [x] Configurar assets PWA (ícones, splash screens)
+- [x] Configurar build para PWA
+- [x] Corrigir erro de host bloqueado (allowedHosts)
 
 ---
 
