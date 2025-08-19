@@ -116,6 +116,7 @@ export default defineConfig({
     host: true,
     allowedHosts: [
       'ts-error-fix.preview.emergentagent.com',
+      'retome-docs.preview.emergentagent.com',
       '.preview.emergentagent.com',
       'localhost'
     ]
