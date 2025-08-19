@@ -116,12 +116,16 @@ const ShieldIcon = () => <span className="text-xl">🛡️</span>;
 const LeafIcon = () => <span className="text-xl">🍃</span>;
 
 // Layout moderno
-const DashboardLayout = ({ children }) => {
+interface DashboardLayoutProps {
+  children: ReactNode;
+}
+
+const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   
-  const navigation = [
+  const navigation: NavigationItem[] = [
     { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
     { name: 'Licenças', href: '/licenses', icon: FileTextIcon },
     { name: 'Projetos', href: '/projects', icon: FolderIcon },
