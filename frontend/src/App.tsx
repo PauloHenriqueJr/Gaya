@@ -824,14 +824,14 @@ const LicensesPage: React.FC = () => {
     }
   };
 
-  const getStatusBadge = (status) => {
-    const statusConfig = {
+  const getStatusBadge = (status: License['status']) => {
+    const statusConfig: Record<License['status'], { class: string; icon: string }> = {
       'Ativa': { class: 'badge-active', icon: '✅' },
       'Vencida': { class: 'badge-expired', icon: '❌' },
       'Pendente': { class: 'badge-pending', icon: '⏳' },
       'Suspensa': { class: 'badge-premium', icon: '⏸️' }
     };
-    const config = statusConfig[status] || statusConfig['Pendente'];
+    const config = statusConfig[status];
     return { class: `badge-premium ${config.class}`, icon: config.icon };
   };
 
